@@ -1,0 +1,13 @@
+# dependencies
+backend/node_modules
+frontend/node_modules
+
+# dotenvs
+backend/.env
+frontend/.env
+
+# testing
+frontend/coverage
+
+# production
+frontend/build
