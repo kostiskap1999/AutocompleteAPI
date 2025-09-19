@@ -1,7 +1,14 @@
 const express = require('express')
-const app = express()
-const PORT = 3001
+const cors = require('cors')
+require('dotenv').config()
 
-app.get('/', (req, res) => res.send('Hello from backend'))
+const app = express()
+const PORT = process.env.PORT || 3001
+
+app.use(cors())
+app.use(express.json())
+
+const { autocompleteService } = require('./services/autocompleteService')
+app.get('/api/property/autocomplete', autocompleteService)
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
