@@ -79,6 +79,17 @@ $input-radius: 5px;
                 background: #f0f0f0;
             }
         }
+
+        div:first-child {
+            font-weight: 500; // mainText
+            font-size: 1rem;
+        }
+
+        div:last-child {
+            font-weight: 400;
+            font-size: 0.85rem; // smaller secondaryText
+            color: #666;
+        }
     }
 }
 
@@ -95,4 +106,37 @@ $input-radius: 5px;
     .submit-btn {
         padding: 10px 15px;
     }
+}
+
+.ad-form label {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.label-text {
+  margin-bottom: 10px; // space below label text
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+
+  .required-asterisk {
+    color: red;
+    font-weight: bold;
+  }
+}
+
+.required-text {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
+.form-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
 }

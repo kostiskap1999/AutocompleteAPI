@@ -1,3 +1,5 @@
+import { AreaModel } from "./AreaModel"
+
 export class FormModel {
   constructor({
     formId = Date.now(),

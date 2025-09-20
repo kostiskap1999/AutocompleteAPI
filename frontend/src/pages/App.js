@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { fetchAreaAutocomplete } from '../api/autocompleteAreaApi'
 import { FormModel } from '../model/FormModel'
 import '../styles/App.scss'
+import { AreaModel } from '../model/AreaModel'
 
 export default function App() {
 
@@ -18,7 +19,11 @@ export default function App() {
         }
 
         const results = await fetchAreaAutocomplete(areaInput)
-        setSuggestions(results)
+        const suggestionList = []
+        results.forEach(result => {
+            suggestionList.push(new AreaModel(result))
+        })
+        setSuggestions(suggestionList)
         }, 300)
 
         return () => clearTimeout(timeout)
@@ -42,67 +47,95 @@ export default function App() {
     return (
         <div className="app-container">
             <form className="ad-form" onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    className="form-input"
-                    placeholder="Title"
-                    value={form.title}
-                    onChange={e => handleChange('title', e.target.value)}
-                    required
-                />
-                <input
-                    type="text"
-                    className="form-input"
-                    placeholder="Type"
-                    value={form.type}
-                    onChange={e => handleChange('type', e.target.value)}
-                    required
-                />
-                <input
-                    type="number"
-                    className="form-input"
-                    placeholder="Price"
-                    value={form.price}
-                    onChange={e => handleChange('price', e.target.value)}
-                    required
-                />
-                <div className="area-input-container">
+                <div className="form-title">Post your ad</div>
+                <label>
+                    <div className="label-text">
+                        Title <span className="required-asterisk">*</span>
+                    </div>
                     <input
                         type="text"
                         className="form-input"
-                        placeholder="Area"
-                        value={areaInput}
-                        onChange={e => {
-                            setAreaInput(e.target.value)
-                            handleChange('area', null)
-                        }}
+                        value={form.title}
+                        onChange={e => handleChange('title', e.target.value)}
                         required
                     />
-                    {suggestions.length > 0 && (
-                        <ul className="suggestions-list">
-                        {suggestions.map(area => (
-                            <li
-                            key={area.id}
-                            onClick={() => {
-                                handleChange('area', area)
-                                setAreaInput(area.name)
-                                setSuggestions([])
+                </label>
+
+                <label>
+                    <div className="label-text">
+                        Type <span className="required-asterisk">*</span>
+                    </div>
+                    <input
+                        type="text"
+                        className="form-input"
+                        value={form.type}
+                        onChange={e => handleChange('type', e.target.value)}
+                        required
+                    />
+                </label>
+
+                <label>
+                    <div className="label-text">
+                        Price <span className="required-asterisk">*</span>
+                    </div>
+                    <input
+                        type="number"
+                        className="form-input"
+                        value={form.price}
+                        onChange={e => handleChange('price', e.target.value)}
+                        required
+                    />
+                </label>
+
+                <label>
+                    <div className="label-text">
+                        Area <span className="required-asterisk">*</span>
+                    </div>
+                    <div className="area-input-container">
+                        <input
+                            type="text"
+                            className="form-input"
+                            value={form.area ? `${form.area.mainText}, ${form.area.secondaryText}` : areaInput}
+                            onChange={e => {
+                            setAreaInput(e.target.value)
+                            handleChange('area', null)
                             }}
-                            >
-                            {area.name}
-                            </li>
-                        ))}
-                        </ul>
-                    )}
-                </div>
-                <textarea
-                    className="form-textarea"
-                    placeholder="Extra Description"
-                    value={form.extraDescription}
-                    onChange={e => handleChange('extraDescription', e.target.value)}
-                    required
-                />
+                            required
+                        />
+                        {suggestions.length > 0 && (
+                            <ul className="suggestions-list">
+                            {suggestions.map(area => (
+                                <li
+                                    key={area.placeId}
+                                    onClick={() => {
+                                        handleChange('area', area)
+                                        setAreaInput(area.mainText)
+                                        setSuggestions([])
+                                }}
+                                >
+                                    <div>{area.mainText}</div>
+                                    <div>{area.secondaryText}</div>
+                                </li>
+                            ))}
+                            </ul>
+                        )}
+                    </div>
+                </label>
+
+                <label>
+                    <div className="label-text">
+                        Extra Description
+                    </div>
+                    <textarea
+                        className="form-textarea"
+                        value={form.extraDescription}
+                        onChange={e => handleChange('extraDescription', e.target.value)}
+                    />
+                </label>
+
                 <button type="submit" className="submit-btn">Submit Ad</button>
+
+                <p className="required-text">* Required field</p>
             </form>
         </div>
     )
