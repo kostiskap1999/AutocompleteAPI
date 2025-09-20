@@ -1,5 +1,12 @@
 export class FormModel {
-  constructor({ formId, title, type, area, price, extraDescription }) {
+  constructor({
+    formId = Date.now(),
+    title = '',
+    type = '',
+    area = null,
+    price = '',
+    extraDescription = ''
+  } = {}) {
     this.formId = formId
     this.title = title
     this.type = type
