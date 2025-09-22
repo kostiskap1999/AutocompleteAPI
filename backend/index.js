@@ -11,4 +11,7 @@ app.use(express.json())
 const { autocompleteService } = require('./services/autocompleteService')
 app.get('/api/property/autocomplete', autocompleteService)
 
+const { postAd } = require('./services/adService')
+app.post('/api/property/ad', postAd)
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
