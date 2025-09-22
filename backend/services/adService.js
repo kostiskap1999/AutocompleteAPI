@@ -1,5 +1,5 @@
-import pool from '../database/config.js'
-import { Ad } from '../model/ad.js'
+const pool = require('../database/config')
+const { Ad } = require('../model/ad')
 
 export async function postAd(ad) {
   const conn = await pool.getConnection()

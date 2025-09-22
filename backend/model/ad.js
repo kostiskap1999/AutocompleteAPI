@@ -1,6 +1,7 @@
-import { Area } from "./area"
+const { Area } = require('./area')
 
-export class Ad {
+
+class Ad {
   constructor({ id, title, type, price, extra_description, area }) {
     this.id = id
     this.title = title
@@ -11,3 +12,5 @@ export class Ad {
 
   }
 }
+
+module.exports = { Ad }
