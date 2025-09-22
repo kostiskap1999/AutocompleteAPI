@@ -14,4 +14,7 @@ app.get('/api/autocomplete', autocompleteService)
 const { postAd } = require('./services/adService')
 app.post('/api/ad', postAd)
 
+const { getAds } = require('./services/adService')
+app.get('/api/ad', getAds)
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
