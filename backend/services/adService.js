@@ -1,10 +1,12 @@
 const pool = require('../database/config')
 const { Ad } = require('../model/ad')
 
-async function postAd(ad) {
+async function postAd(req) {
   const conn = await pool.getConnection()
   try {
     await conn.beginTransaction()
+
+    const ad = req.body
 
     await conn.execute( //use ignore to avoid duplicates
       `INSERT IGNORE INTO area (place_id, main_text, secondary_text)

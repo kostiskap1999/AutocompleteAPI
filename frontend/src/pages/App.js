@@ -46,9 +46,10 @@
                 alert('Please select an area')
                 return
             }
+            console.log(form)
 
             try {
-                const savedAd = await postAd(form)
+                await postAd(form)
                 alert('Ad posted successfully!')
             } catch (err) {
                 console.error(err)
