@@ -3,7 +3,7 @@ export async function fetchAreaAutocomplete(input) {
     return []
 
   try {
-    const response = await fetch(`http://localhost:3001/api/property/autocomplete?input=${input}`)
+    const response = await fetch(`http://localhost:3001/api/autocomplete?input=${input}`)
     if (!response.ok)
         throw new Error('Failed to fetch autocomplete results')
     
