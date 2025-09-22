@@ -17,3 +17,22 @@ export async function postAd(ad) {
     throw err
   }
 }
+
+export async function getAds() {
+  try {
+    const response = await fetch('http://localhost:3001/api/ad', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    })
+
+    if (!response.ok) {
+      const errorData = await response.json()
+      throw new Error(errorData.error || 'Failed to fetch ads')
+    }
+
+    return await response.json()
+  } catch (err) {
+    console.error('Error fetching ads:', err)
+    throw err
+  }
+}
