@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getAds } from '../api/adApi'
+import '../styles/Ads.scss'
 
 export default function Ads() {
   const [ads, setAds] = useState([])
@@ -8,11 +9,7 @@ export default function Ads() {
     useEffect(() => {
         const fetchAds = async () => {
             try {
-                console.log('ti')
                 const results = await getAds()
-                console.log('tiw')
-                console.log(JSON.stringify(results))
-                console.log('tia')
                 setAds(results)
             } catch (err) {
                 console.error(err)
@@ -25,20 +22,27 @@ export default function Ads() {
 
   return (<>{
     !loading &&
-        <div style={{ padding: '1rem' }}>
-            <h1>All Ads</h1>
+        <div className="ads-container">
+            <div className="ads-title">All Ads</div>
             {ads.length === 0 ? (
-                <p>No ads available.</p>
+                <p className="no-ads">No ads available.</p>
             ) : (
-                <ul>
+                <ul className="ads-list">
                 {ads.map(ad => (
-                    <li key={ad.id}>
-                        <strong>{ad.title}</strong> — {ad.type} — {ad.price}€
+                    <li key={ad.id} className="ad">
+                    <div className="ad-header">
+                        <strong>{ad.title}</strong>
+                        <span>{ad.type} — {ad.price}€</span>
+                    </div>
+                    {ad.extraDescription && <p>{ad.extraDescription}</p>}
+                    <p>{ad.area.mainText}, {ad.area.secondaryText}</p>
+                    {ad.address && <p>Address: {ad.address}</p>}
+                    {ad.phone && <p>Phone: {ad.phone}</p>}
                     </li>
                 ))}
                 </ul>
             )}
-        </div>
+            </div>
     }
   </>)
 }

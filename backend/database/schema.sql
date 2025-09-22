@@ -38,6 +38,8 @@ CREATE TABLE IF NOT EXISTS `ad_challenge`.`ad` (
   `title` VARCHAR(100) NOT NULL,
   `type` VARCHAR(100) NOT NULL,
   `price` DECIMAL(10,2) NOT NULL,
+  `address` VARCHAR(100) NOT NULL,
+  `phone` VARCHAR(100) NOT NULL,
   `extra_description` TEXT NULL DEFAULT NULL,
   `area_id` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),

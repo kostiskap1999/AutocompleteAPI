@@ -2,11 +2,21 @@ const { Area } = require('./area')
 
 
 class Ad {
-  constructor({ id, title, type, price, extra_description, place_id, main_text, secondary_text }) {
-    this.id = id
+  constructor({
+    id = Date.now(),
+    title = '',
+    type = '',
+    price = '',
+    address = '',
+    phone = '',
+    extra_description = ''
+  } = {}) {
+    this.formId = id
     this.title = title
     this.type = type
     this.price = price
+    this.address = address
+    this.phone = phone
     this.extraDescription = extra_description
     this.area = new Area({ place_id, main_text, secondary_text })
 

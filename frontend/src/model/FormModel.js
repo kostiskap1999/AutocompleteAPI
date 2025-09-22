@@ -7,6 +7,8 @@ export class FormModel {
     type = '',
     area = null,
     price = '',
+    address = '',
+    phone = '',
     extraDescription = ''
   } = {}) {
     this.formId = formId
@@ -14,6 +16,8 @@ export class FormModel {
     this.type = type
     this.area = area
     this.price = price
+    this.address = address
+    this.phone = phone
     this.extraDescription = extraDescription
   }
 }

@@ -1,7 +1,7 @@
     import { useState, useEffect } from 'react'
     import { fetchAreaAutocomplete } from '../api/autocompleteAreaApi'
     import { FormModel } from '../model/FormModel'
-    import '../styles/App.scss'
+    import '../styles/Form.scss'
     import { AreaModel } from '../model/AreaModel'
     import { postAd } from '../api/adApi'
 
@@ -71,17 +71,22 @@
                     </label>
 
                     <label>
-                        <div className="label-text">
-                            Type <span className="required-asterisk">*</span>
-                        </div>
-                        <input
-                            type="text"
-                            className="form-input"
-                            value={form.type}
-                            onChange={e => handleChange('type', e.target.value)}
-                            required
-                        />
+                    <div className="label-text">
+                        Type <span className="required-asterisk">*</span>
+                    </div>
+                    <select
+                        className="form-input"
+                        value={form.type}
+                        onChange={e => handleChange('type', e.target.value)}
+                        required
+                    >
+                        <option value="">Select type</option>
+                        <option value="rent">Rent</option>
+                        <option value="buy">Buy</option>
+                        <option value="airbnb">Airbnb</option>
+                    </select>
                     </label>
+
 
                     <label>
                         <div className="label-text">
@@ -129,6 +134,34 @@
                                 </ul>
                             )}
                         </div>
+                    </label>
+
+
+                    <label>
+                        <div className="label-text">
+                            Address <span className="required-asterisk">*</span>
+                        </div>
+                        <input
+                            type="number"
+                            className="form-input"
+                            value={form.price}
+                            onChange={e => handleChange('address', e.target.value)}
+                            required
+                        />
+                    </label>
+
+
+                    <label>
+                        <div className="label-text">
+                            Phone <span className="required-asterisk">*</span>
+                        </div>
+                        <input
+                            type="number"
+                            className="form-input"
+                            value={form.price}
+                            onChange={e => handleChange('phone', e.target.value)}
+                            required
+                        />
                     </label>
 
                     <label>
