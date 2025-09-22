@@ -15,6 +15,14 @@ const { postAd } = require('./services/adService')
 app.post('/api/ad', postAd)
 
 const { getAds } = require('./services/adService')
-app.get('/api/ad', getAds)
+app.get('/api/ad', async (req, res) => {
+  try {
+    const ads = await getAds()
+    res.json(ads)
+  } catch (err) {
+    console.error(err)
+    res.status(500).json({ error: 'Failed to fetch ads' })
+  }
+})
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`))

@@ -8,7 +8,11 @@ export default function Ads() {
     useEffect(() => {
         const fetchAds = async () => {
             try {
+                console.log('ti')
                 const results = await getAds()
+                console.log('tiw')
+                console.log(JSON.stringify(results))
+                console.log('tia')
                 setAds(results)
             } catch (err) {
                 console.error(err)

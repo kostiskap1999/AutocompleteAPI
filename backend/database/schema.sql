@@ -21,7 +21,7 @@ USE `ad_challenge` ;
 -- Table `ad_challenge`.`area`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ad_challenge`.`area` (
-  `place_id` VARCHAR(40) NOT NULL,
+  `place_id` VARCHAR(255) NOT NULL,
   `main_text` VARCHAR(100) NOT NULL,
   `secondary_text` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`place_id`))
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `ad_challenge`.`ad` (
   `type` VARCHAR(100) NOT NULL,
   `price` DECIMAL(10,2) NOT NULL,
   `extra_description` TEXT NULL DEFAULT NULL,
-  `area_id` VARCHAR(40) NOT NULL,
+  `area_id` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `area_id_idx` (`area_id` ASC) VISIBLE,
   CONSTRAINT `area_id`
