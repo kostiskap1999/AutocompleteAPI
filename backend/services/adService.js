@@ -1,7 +1,7 @@
 const pool = require('../database/config')
 const { Ad } = require('../model/ad')
 
-export async function postAd(ad) {
+async function postAd(ad) {
   const conn = await pool.getConnection()
   try {
     await conn.beginTransaction()
@@ -28,7 +28,7 @@ export async function postAd(ad) {
   }
 }
 
-export async function getAds() {
+async function getAds() {
     const [rows] = await pool.execute(
         `SELECT a.id, a.title, a.type, a.price, a.extra_description,
                 ar.place_id, ar.main_text, ar.secondary_text
@@ -38,3 +38,5 @@ export async function getAds() {
     )
     return rows.map(row => new Ad(row))
 }
+
+module.exports = { postAd, getAds }
