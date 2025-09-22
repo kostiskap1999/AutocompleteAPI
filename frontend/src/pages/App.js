@@ -9,7 +9,7 @@ export default function App() {
     const [form, setForm] = useState(new FormModel())
     const [areaInput, setAreaInput] = useState('')
     const [suggestions, setSuggestions] = useState([])
-
+    const [cache, setCache] = useState({})
 
     useEffect(() => {
         const timeout = setTimeout(async () => {
@@ -18,11 +18,16 @@ export default function App() {
             return
         }
 
+        if (cache[areaInput]) {
+            setSuggestions(cache[areaInput])
+            return
+        }
+
         const results = await fetchAreaAutocomplete(areaInput)
-        const suggestionList = []
-        results.forEach(result => {
-            suggestionList.push(new AreaModel(result))
-        })
+        const suggestionList = results.map(result => new AreaModel(result))
+
+        setCache(prev => ({ ...prev, [areaInput]: suggestionList }))
+
         setSuggestions(suggestionList)
         }, 300)
 
