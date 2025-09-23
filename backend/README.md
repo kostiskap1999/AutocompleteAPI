@@ -18,6 +18,11 @@ This ensures you won't run into an `ER_NOT_SUPPORTED_AUTH_MODE` error after runn
 
 To install all the dependencies.
 
+## .env file
+
+The following variables in the .env.example file need to be set: `AUTOCOMPLETE_API_URL` and `DB_PASSWORD`. The rest are examplary and defaulted, and may be changed for
+your final .env.
+
 
 ## Available Scripts
 
