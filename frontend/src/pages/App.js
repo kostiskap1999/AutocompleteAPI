@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import Form from './Form'
 import Ads from './Ads'
+import '../styles/App.scss'
 
 export default function App() {
   return (

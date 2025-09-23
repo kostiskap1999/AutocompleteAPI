@@ -1,0 +1,18 @@
+nav {
+  display: flex;
+  gap: 15px;
+  padding: 10px 20px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ddd;
+
+  a {
+    text-decoration: none;
+    color: #4a90e2;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &:hover {
+      color: darken(#4a90e2, 15%);
+    }
+  }
+}

@@ -10,6 +10,7 @@
         const [form, setForm] = useState(new FormModel())
         const [areaInput, setAreaInput] = useState('')
         const [suggestions, setSuggestions] = useState([])
+        const [showSuggestions, setShowSuggestions] = useState(false)
         const [cache, setCache] = useState({})
 
         useEffect(() => {
@@ -111,12 +112,16 @@
                                 className="form-input"
                                 value={form.area ? `${form.area.mainText}, ${form.area.secondaryText}` : areaInput}
                                 onChange={e => {
-                                setAreaInput(e.target.value)
-                                handleChange('area', null)
+                                    setAreaInput(e.target.value)
+                                    handleChange('area', null)
+                                }}
+                                onFocus={() => setShowSuggestions(true)}
+                                onBlur={() => {
+                                    setTimeout(() => setShowSuggestions(false), 150)
                                 }}
                                 required
                             />
-                            {suggestions.length > 0 && (
+                            {showSuggestions && suggestions.length > 0 && (
                                 <ul className="suggestions-list">
                                 {suggestions.map(area => (
                                     <li
@@ -142,7 +147,7 @@
                             Address <span className="required-asterisk">*</span>
                         </div>
                         <input
-                            type="number"
+                            type="text"
                             className="form-input"
                             value={form.price}
                             onChange={e => handleChange('address', e.target.value)}
@@ -156,7 +161,7 @@
                             Phone <span className="required-asterisk">*</span>
                         </div>
                         <input
-                            type="number"
+                            type="text"
                             className="form-input"
                             value={form.price}
                             onChange={e => handleChange('phone', e.target.value)}
