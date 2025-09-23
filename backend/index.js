@@ -17,7 +17,8 @@ app.get('/api/autocomplete', autocompleteService)
 const { postAd } = require('./services/adService')
 app.post('/api/ad', async (req, res) => {
     try {
-        await postAd()
+        result = await postAd(req.body)
+        res.json(result)
     } catch (err) {
         console.error(err)
         handleError(res, err, 'Failed to post ad')

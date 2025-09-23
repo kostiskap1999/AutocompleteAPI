@@ -7,7 +7,7 @@ async function postAd(req) {
   try {
     await conn.beginTransaction()
 
-    const ad = req.body
+    const ad = req
 
     await conn.execute( //use IGNORE to avoid duplicates
       `INSERT IGNORE INTO area (place_id, main_text, secondary_text)
@@ -16,9 +16,9 @@ async function postAd(req) {
     )
 
     const [adResult] = await conn.execute(
-      `INSERT INTO ad (title, type, price, extra_description, area_id)
-       VALUES (?, ?, ?, ?, ?)`,
-      [ad.title, ad.type, ad.price, ad.extraDescription, ad.area.placeId]
+      `INSERT INTO ad (title, type, price, address, phone, extra_description, area_id)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      [ad.title, ad.type, ad.price, ad.address, ad.phone, ad.extraDescription, ad.area.placeId]
     )
 
     await conn.commit()
@@ -29,12 +29,13 @@ async function postAd(req) {
   } finally {
     conn.release()
   }
+
 }
 
 // get all ads from the database
 async function getAds() {
     const [rows] = await pool.execute(
-        `SELECT a.id, a.title, a.type, a.price, a.extra_description,
+        `SELECT a.id, a.title, a.type, a.price, a.address, a.phone, a.extra_description,
                 ar.place_id, ar.main_text, ar.secondary_text
         FROM ad a
         JOIN area ar ON a.area_id = ar.place_id

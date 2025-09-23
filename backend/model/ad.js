@@ -9,6 +9,9 @@ class Ad {
     price = '',
     address = '',
     phone = '',
+    place_id = '',
+    main_text = '',
+    secondary_text = '',
     extra_description = ''
   } = {}) {
     this.formId = id

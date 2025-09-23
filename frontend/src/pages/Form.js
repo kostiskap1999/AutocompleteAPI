@@ -46,10 +46,12 @@
         }
 
         const handleSubmit = async (e) => {
+            console.log('1')
             e.preventDefault()
             console.log(form)
 
             try {
+                console.log('1')
                 await postAd(form)
                 alert('Ad posted successfully.')
             } catch (err) {
@@ -88,9 +90,9 @@
                         required
                     >
                         <option value="">Select type</option>
-                        <option value="rent">Rent</option>
-                        <option value="buy">Buy</option>
-                        <option value="airbnb">Airbnb</option>
+                        <option value="Rent">Rent</option>
+                        <option value="Buy">Buy</option>
+                        <option value="Airbnb">Airbnb</option>
                     </select>
                     </label>
 
@@ -157,7 +159,7 @@
                         <input
                             type="text"
                             className="form-input"
-                            value={form.price}
+                            value={form.address}
                             onChange={e => handleChange('address', e.target.value)}
                             required
                         />
@@ -172,7 +174,7 @@
                         <input
                             type="text"
                             className="form-input"
-                            value={form.price}
+                            value={form.phone}
                             onChange={e => handleChange('phone', e.target.value)}
                             required
                         />
