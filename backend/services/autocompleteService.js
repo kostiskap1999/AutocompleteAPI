@@ -1,3 +1,5 @@
+const { handleError } = require('../util/errorHandler')
+
 const cache = new Map()
 const CACHE_TTL = 1000 * 60 * 5
 
@@ -32,7 +34,7 @@ async function autocompleteService(req, res) {
     res.json(data)
   } catch (err) {
     console.error(err)
-    res.status(err.status || 500).json({ error: err.message || 'Internal server error' })
+    handleError(res, err, 'Autocomplete API error')
   }
 }
 

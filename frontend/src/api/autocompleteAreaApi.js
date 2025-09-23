@@ -10,7 +10,8 @@ export async function fetchAreaAutocomplete(input) {
     const data = await response.json()
     return data
   } catch (err) {
-    console.error(err)
+    console.error('Autocomplete API error:', err)
+    alert(err.message)
     return []
   }
 }

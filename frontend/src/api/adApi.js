@@ -14,6 +14,7 @@ export async function postAd(ad) {
     return await response.json()
   } catch (err) {
     console.error('Error posting ad:', err)
+    alert(err.message)
     throw err
   }
 }
@@ -33,6 +34,7 @@ export async function getAds() {
     return await response.json()
   } catch (err) {
     console.error('Error fetching ads:', err)
+    alert(err.message)
     throw err
   }
 }
