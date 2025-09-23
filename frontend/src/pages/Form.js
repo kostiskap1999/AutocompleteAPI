@@ -35,7 +35,7 @@
             setCache(prev => ({ ...prev, [areaInput]: suggestionList }))
 
             setSuggestions(suggestionList)
-            }, 500)
+            }, 200)
 
             return () => clearTimeout(timeout)
         }, [areaInput])
@@ -46,12 +46,10 @@
         }
 
         const handleSubmit = async (e) => {
-            console.log('1')
             e.preventDefault()
             console.log(form)
 
             try {
-                console.log('1')
                 await postAd(form)
                 alert('Ad posted successfully.')
             } catch (err) {
@@ -73,7 +71,7 @@
                             type="text"
                             className="form-input"
                             value={form.title}
-                            onChange={e => handleChange('title', e.target.value)}
+                            onChange={e => handleChange('title', e.target.value.slice(0, 100))}
                             required
                         />
                     </label>
@@ -86,7 +84,7 @@
                     <select
                         className="form-input"
                         value={form.type}
-                        onChange={e => handleChange('type', e.target.value)}
+                        onChange={e => handleChange('type', e.target.value.slice(0, 100))}
                         required
                     >
                         <option value="">Select type</option>
@@ -105,7 +103,7 @@
                             type="number"
                             className="form-input"
                             value={form.price}
-                            onChange={e => handleChange('price', e.target.value)}
+                            onChange={e => handleChange('price', Math.round((e.target.valueAsNumber || 0) * 100) / 100)}
                             required
                         />
                     </label>
@@ -160,7 +158,7 @@
                             type="text"
                             className="form-input"
                             value={form.address}
-                            onChange={e => handleChange('address', e.target.value)}
+                            onChange={e => handleChange('address', e.target.value.slice(0, 100))}
                             required
                         />
                     </label>
@@ -172,10 +170,10 @@
                             Phone <span className="required-asterisk">*</span>
                         </div>
                         <input
-                            type="text"
+                            type="number"
                             className="form-input"
                             value={form.phone}
-                            onChange={e => handleChange('phone', e.target.value)}
+                            onChange={e => handleChange('phone', e.target.valueAsNumber)}
                             required
                         />
                     </label>
@@ -188,7 +186,7 @@
                         <textarea
                             className="form-textarea"
                             value={form.extraDescription}
-                            onChange={e => handleChange('extraDescription', e.target.value)}
+                            onChange={e => handleChange('extraDescription', e.target.value.slice(0, 1000))}
                         />
                     </label>
 

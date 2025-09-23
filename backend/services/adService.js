@@ -9,6 +9,28 @@ async function postAd(req) {
 
     const ad = req
 
+    // input validation
+    if (!ad.title || !ad.type || !ad.price || !ad.address || !ad.phone || !ad.area) {
+      const error = new Error('Missing required fields')
+      error.status = 400
+      throw error
+    }
+
+    // max chars validation
+    if (ad.title.length > 100 || ad.address.length > 100 || ad.phone.length > 100 || ad.type.length > 100) {
+      const error = new Error('Field length exceeds limit')
+      error.status = 400
+      throw error
+    }
+
+    // optional extra description validation
+    if (ad.extraDescription && ad.extraDescription.length > 1000) {
+      const error = new Error('Extra description too long')
+      error.status = 400
+      throw error
+    }
+
+
     await conn.execute( //use IGNORE to avoid duplicates
       `INSERT IGNORE INTO area (place_id, main_text, secondary_text)
        VALUES (?, ?, ?)`,
