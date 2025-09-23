@@ -6,6 +6,7 @@ export default function Ads() {
   const [ads, setAds] = useState([])
   const [loading, setLoading] = useState(true)
 
+  /* handles fetching ads from the backend to show */
     useEffect(() => {
         const fetchAds = async () => {
             try {

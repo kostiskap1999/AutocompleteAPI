@@ -1,3 +1,4 @@
+// simple error handling function which can be expanded for detailed answers in a larger project and used globally
 function handleError(res, err, fallbackMessage = 'Something went wrong') {
   let status = 500
   let message = err.message || fallbackMessage

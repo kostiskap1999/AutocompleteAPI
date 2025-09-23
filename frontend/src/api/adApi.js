@@ -1,3 +1,4 @@
+// post ad to the database
 export async function postAd(ad) {
   try {
     const response = await fetch('http://localhost:3001/api/ad', {
@@ -19,6 +20,7 @@ export async function postAd(ad) {
   }
 }
 
+// get all ads from the database
 export async function getAds() {
   try {
     const response = await fetch('http://localhost:3001/api/ad', {

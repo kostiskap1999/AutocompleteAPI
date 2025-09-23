@@ -1,7 +1,5 @@
+// get autocomplete suggestions from the external api, which is handled in the backend.
 export async function fetchAreaAutocomplete(input) {
-  if (!input || input.length < 3)
-    return []
-
   try {
     const response = await fetch(`http://localhost:3001/api/autocomplete?input=${input}`)
     if (!response.ok)

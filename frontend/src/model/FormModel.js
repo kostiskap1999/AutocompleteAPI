@@ -14,7 +14,7 @@ export class FormModel {
     this.formId = formId
     this.title = title
     this.type = type
-    this.area = area
+    this.area = new AreaModel(area && area)
     this.price = price
     this.address = address
     this.phone = phone

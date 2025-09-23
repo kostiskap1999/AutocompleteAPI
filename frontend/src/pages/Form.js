@@ -8,11 +8,15 @@
     export default function Form() {
 
         const [form, setForm] = useState(new FormModel())
-        const [areaInput, setAreaInput] = useState('')
+        const [areaInput, setAreaInput] = useState('') // refers to whatever the user types in the Area field
         const [suggestions, setSuggestions] = useState([])
         const [showSuggestions, setShowSuggestions] = useState(false)
         const [cache, setCache] = useState({})
 
+        /* handles Area suggestion list fetching with some prerequisites, so long as the input is
+        more than 3 characters and is not cached. also handles caching, and has a timeout to avoid
+        constant api calls.
+        */
         useEffect(() => {
             const timeout = setTimeout(async () => {
             if (areaInput.length < 3) {
@@ -58,6 +62,7 @@
             <div className="app-container">
                 <form className="ad-form" onSubmit={async (e) => await handleSubmit(e)}>
                     <div className="form-title">Post your ad</div>
+                    {/* AD TITLE */}
                     <label>
                         <div className="label-text">
                             Title <span className="required-asterisk">*</span>
@@ -71,6 +76,7 @@
                         />
                     </label>
 
+                    {/* HOUSING TYPE */}
                     <label>
                     <div className="label-text">
                         Type <span className="required-asterisk">*</span>
@@ -88,7 +94,7 @@
                     </select>
                     </label>
 
-
+                    {/* PRICE */}
                     <label>
                         <div className="label-text">
                             Price <span className="required-asterisk">*</span>
@@ -102,6 +108,7 @@
                         />
                     </label>
 
+                    {/* AREA WITH AUTOCOMPLETE */}
                     <label>
                         <div className="label-text">
                             Area <span className="required-asterisk">*</span>
@@ -142,6 +149,7 @@
                     </label>
 
 
+                    {/* ADDRESS */}
                     <label>
                         <div className="label-text">
                             Address <span className="required-asterisk">*</span>
@@ -156,6 +164,7 @@
                     </label>
 
 
+                    {/* PHONE */}
                     <label>
                         <div className="label-text">
                             Phone <span className="required-asterisk">*</span>
@@ -169,6 +178,7 @@
                         />
                     </label>
 
+                    {/* OPTIONAL EXTRA DESCRIPTION */}
                     <label>
                         <div className="label-text">
                             Extra Description

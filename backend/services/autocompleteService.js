@@ -3,6 +3,9 @@ const { handleError } = require('../util/errorHandler')
 const cache = new Map()
 const CACHE_TTL = 1000 * 60 * 5
 
+/* handles suggestion list fetching with some prerequisites, so long as the input is
+more than 3 characters and is not cached. also handles caching.
+*/
 async function autocompleteService(req, res) {
   const query = req.query.input
   

@@ -1,6 +1,7 @@
 const pool = require('../database/config')
 const { Ad } = require('../model/ad')
 
+// post ad to the database
 async function postAd(req) {
   const conn = await pool.getConnection()
   try {
@@ -8,7 +9,7 @@ async function postAd(req) {
 
     const ad = req.body
 
-    await conn.execute( //use ignore to avoid duplicates
+    await conn.execute( //use IGNORE to avoid duplicates
       `INSERT IGNORE INTO area (place_id, main_text, secondary_text)
        VALUES (?, ?, ?)`,
       [ad.area.placeId, ad.area.mainText, ad.area.secondaryText]
@@ -30,6 +31,7 @@ async function postAd(req) {
   }
 }
 
+// get all ads from the database
 async function getAds() {
     const [rows] = await pool.execute(
         `SELECT a.id, a.title, a.type, a.price, a.extra_description,
