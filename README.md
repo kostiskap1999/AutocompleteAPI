@@ -14,7 +14,7 @@ The frontend connects only to the backend, and has two pages and simple react-do
 
 ## More information
 
-The project features input validation both on the front and back ends, so for example inputs have a maximum number of characters or numeric ones stay numeric. It also cares that on both ends there is some caching for less API calls, with a timeout for caching on the backend. Its architectural design revolves around model classes for both ends so that data always initialise and the developer has better control and dataflow, while calls between the endpoints happen via fetch. Its responsive UI makes it friendly for smaller devices.
+The project features input validation both on the front and back ends, so for example inputs have a maximum number of characters or numeric ones stay numeric. It also cares that on both ends there is some caching for less API calls, with a timeout for caching on the backend. Its architectural design revolves around model classes for both ends so that data always initialise and the developer has better control and dataflow, while calls between the endpoints happen via fetch. Its responsive UI makes it friendly for smaller devices. Error handling has been implemented so that in a bigger project it can be easily expanded and more error codes and detailed alerts on the frontend become available.
 
 ## Setting up
 
